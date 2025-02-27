@@ -1,0 +1,16 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Hong_Kong
+      - PASSWORD=${PASSWORD}  # password for using code-server
+      - PROXY_DOMAIN=subdomain.yourdomain # subdomain
+      - DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE}
+    ports:
+      - ${PORT}:8443
+    volumes:
+      - ${CONFIG_PATH}:/config
+    restart: unless-stopped
